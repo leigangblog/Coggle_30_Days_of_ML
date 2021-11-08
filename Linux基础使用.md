@@ -142,6 +142,7 @@ for i in sys.argv:
 ```
 
 - python3 test5.py 参数1 参数2
+
 ![打印命令行参数](https://gitee.com/leigangblog/images/raw/master/img/20211108194952.png)
 
 功能2：使用os模块打印/usr/bin/路径下所有以m开头的文件。
@@ -200,4 +201,5 @@ def get_txt(row):
 ```
 
 - python3 test6.py 10
+
 ![](https://gitee.com/leigangblog/images/raw/master/img/20211108203108.png)
