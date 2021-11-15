@@ -203,3 +203,157 @@ def get_txt(row):
 - python3 test6.py 10
 
 ![](https://gitee.com/leigangblog/images/raw/master/img/20211108203108.png)
+
+
+# 任务7：在Linux系统中后台运行应用程序，并打印日志
+任务要点：程序后台运行，进程管理
+步骤1：在/home/coggle目录下在你英文昵称（中间不要有空格哦）的文件夹中创建一个sleep.py文件，该文件需要完成以下功能：程序一直运行每10秒输出当前时间
+```
+cd leigang
+vi sleep.py
+```
+
+```
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+import time
+
+while True:
+    print(time.strftime("%Y-%m-%d %H:%M:%S ", time.localtime(time.time())))
+    time.sleep(10)
+```
+
+```
+python3 sleep.py
+```
+![](https://gitee.com/leigangblog/images/raw/master/img/20211115194416.png)
+
+步骤2：学习 & 和 nohup后台执行的方法
+https://blog.csdn.net/a736933735/article/details/89577557
+http://ipcmen.com/jobs
+- 1.采用&
+```
+python3 sleep.py &
+ctrl+d #退出 才可以，如果直接关闭窗口，进程任然会被关闭
+```
+- 2.采用nohup
+```
+nohup python3 sleep.py 
+ctrl+z #挂起到后台
+bg #后台执行  可以先通过jobs 查看当前有多少job
+ctrl+d  #或者 关闭窗口  进程任然会在后台执行
+```
+
+- 3.采用nohup + &
+```
+nohup python3 sleep.py  &
+ctrl+d  或者 关闭窗口  进程任然会在后台执行
+```
+
+```
+jobs(选项)(参数)
+选项
+-l：显示进程号；
+-p：仅任务对应的显示进程号；
+-n：显示任务状态的变化；
+-r：仅输出运行状态（running）的任务；
+-s：仅输出停止状态（stoped）的任务。
+
+jobs -l               #显示当前系统的任务列表
+```
+
+步骤3：学习tmux的使用，将步骤1的程序进行后台运行，并将输出结果写入到txt文件。
+```
+tmux
+python3 sleep.py>log.txt
+```
+ctrl+d # 退出(detach)当前tmux
+
+
+# 任务8：使用grep和awk从文件中筛选字符串
+任务要点：字符筛选
+步骤1：下载周杰伦歌词文本，并进行解压。
+https://mirror.coggle.club/dataset/jaychou_lyrics.txt.zip
+
+```
+wget https://mirror.coggle.club/dataset/jaychou_lyrics.txt.zip
+unzip jaychou_lyrics.txt.zip
+```
+
+步骤2：利用grep命令完成以下操作，并输出到屏幕
+https://blog.csdn.net/baidu_41388533/article/details/107610827
+https://www.runoob.com/linux/linux-comm-grep.html
+统计歌词中 包含【超人】的歌词
+统计歌词中 包含【外婆】但不包含【期待】的歌词
+统计歌词中 以【我】开头的歌词
+统计歌词中 以【我】结尾的歌词
+
+```
+grep "超人" jaychou_lyrics.txt
+grep "外婆" jaychou_lyrics.txt | grep -v "期待"
+grep -e "^我" jaychou_lyrics.txt 
+grep -e "我$" jaychou_lyrics.txt 
+```
+![](https://gitee.com/leigangblog/images/raw/master/img/20211115203252.png)
+![](https://gitee.com/leigangblog/images/raw/master/img/20211115203306.png)
+![](https://gitee.com/leigangblog/images/raw/master/img/20211115203322.png)
+![](https://gitee.com/leigangblog/images/raw/master/img/20211115203339.png)
+
+步骤3：利用sed命令完成以下操作，并输出到屏幕
+https://www.cnblogs.com/JohnLiang/p/6202962.html
+将歌词中 第2行 至 第40行 删除
+将歌词中 所有【我】替换成【你】
+
+```
+sed '2,40d' jaychou_lyrics.txt
+sed -n '/我/p' jaychou_lyrics.txt | sed 's/我/你/g' 
+```
+
+# 任务9：在目录下创建zip和tar压缩文件，并进行解压
+任务要点：文件压缩
+https://www.cnblogs.com/wxlf/p/8117602.html
+步骤1：在/home/coggle目录下在你英文昵称（中间不要有空格哦）的文件夹中，下载https://mirror.coggle.club/dataset/jaychou_lyrics.txt.zip
+
+```
+wget https://mirror.coggle.club/dataset/jaychou_lyrics.txt.zip
+```
+
+步骤2：使用zip 压缩/home/coggle目录下在你英文昵称（中间不要有空格哦）的文件夹
+```
+zip leigang.zip leigang
+```
+
+将步骤3：步骤3：将 /home/coggle目录下在你英文昵称（中间不要有空格哦）的文件夹，打包为tar格式。
+```
+tar czvf leigang.tar leigang
+```
+
+步骤4：将 /home/coggle目录下在你英文昵称（中间不要有空格哦）的文件夹，打包为tar.gz格式。
+```
+tar zcvf leigang.tar.gz leigang
+```
+
+
+# 任务10：使用find和locate定位文件
+任务要点：文件搜索
+https://www.runoob.com/linux/linux-comm-find.html
+https://www.cnblogs.com/linjiqin/p/11678012.html
+
+步骤1：使用find统计文件系统中以py为后缀名的文件个数
+```
+find . -name "*.py"
+```
+![](https://gitee.com/leigangblog/images/raw/master/img/20211115210208.png)
+
+步骤2：使用find寻找/home/文件夹下文件内容包含coggle的文件
+```
+find /home/ -type f |xargs grep 'coggle'
+```
+![](https://gitee.com/leigangblog/images/raw/master/img/20211115210229.png)
+
+步骤3：时候用locate寻找到python3.preinst文件
+```
+locate python3.preinst
+```
+
+![](https://gitee.com/leigangblog/images/raw/master/img/20211115210141.png)
