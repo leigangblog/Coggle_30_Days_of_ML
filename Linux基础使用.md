@@ -295,8 +295,11 @@ grep -e "^我" jaychou_lyrics.txt
 grep -e "我$" jaychou_lyrics.txt 
 ```
 ![](https://gitee.com/leigangblog/images/raw/master/img/20211115203252.png)
+
 ![](https://gitee.com/leigangblog/images/raw/master/img/20211115203306.png)
+
 ![](https://gitee.com/leigangblog/images/raw/master/img/20211115203322.png)
+
 ![](https://gitee.com/leigangblog/images/raw/master/img/20211115203339.png)
 
 步骤3：利用sed命令完成以下操作，并输出到屏幕
