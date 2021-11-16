@@ -163,7 +163,10 @@ if files:
 
 ![使用os模块打印/usr/bin/路径下所有以m开头的文件](https://gitee.com/leigangblog/images/raw/master/img/20211108200222.png)
 
-# 任务6：在目录下创建py目录，并进行import导入任务要点：python代码模块化
+# 任务6：在目录下创建py目录，并进行import导入
+
+任务要点：python代码模块化
+
 步骤1：学习python模块化，https://www.runoob.com/python3/python3-module.html
 ```
 import module1[, module2[,... moduleN]
@@ -207,6 +210,7 @@ def get_txt(row):
 
 # 任务7：在Linux系统中后台运行应用程序，并打印日志
 任务要点：程序后台运行，进程管理
+
 步骤1：在/home/coggle目录下在你英文昵称（中间不要有空格哦）的文件夹中创建一个sleep.py文件，该文件需要完成以下功能：程序一直运行每10秒输出当前时间
 ```
 cd leigang
@@ -272,7 +276,9 @@ ctrl+d # 退出(detach)当前tmux
 
 # 任务8：使用grep和awk从文件中筛选字符串
 任务要点：字符筛选
+
 步骤1：下载周杰伦歌词文本，并进行解压。
+
 https://mirror.coggle.club/dataset/jaychou_lyrics.txt.zip
 
 ```
@@ -314,7 +320,9 @@ sed -n '/我/p' jaychou_lyrics.txt | sed 's/我/你/g'
 
 # 任务9：在目录下创建zip和tar压缩文件，并进行解压
 任务要点：文件压缩
+
 https://www.cnblogs.com/wxlf/p/8117602.html
+
 步骤1：在/home/coggle目录下在你英文昵称（中间不要有空格哦）的文件夹中，下载https://mirror.coggle.club/dataset/jaychou_lyrics.txt.zip
 
 ```
